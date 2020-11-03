@@ -28,9 +28,9 @@ export class ComandoRegistrarReserva {
   @ApiProperty({ example: '1' })
   public coche: Coche;
 
-  @IsNumberString()
-  @ApiProperty({ example: 132423 })
-  public documento: number;
+  @IsString()
+  @ApiProperty({ example: '132423' })
+  public documento: string;
 
   @IsString()
   @ApiProperty({ example: 'William' })

@@ -14,7 +14,6 @@ import { ManejadorRegistrarReserva } from 'src/aplicacion/reserva/comado/registr
 import { ManejadorListarReserva } from 'src/aplicacion/reserva/consulta/listar-reserva.manejador';
 
 import { ReservaDto } from 'src/aplicacion/reserva/consulta/dto/reserva.dto';
-import { Reserva } from 'src/dominio/reserva/modelo/reserva';
 import { ManejadorActualizarReserva } from 'src/aplicacion/reserva/comado/actualizar-reserva.manejador';
 import { ManejadorEliminarReserva } from 'src/aplicacion/reserva/comado/eliminar-reserva.manejador';
 

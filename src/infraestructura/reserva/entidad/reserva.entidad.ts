@@ -27,7 +27,7 @@ export class ReservaEntidad {
   direccionUsuarioRecibe: string;
 
   @Column()
-  documento: number;
+  documento: string;
 
   @Column()
   nombre: string;
