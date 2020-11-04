@@ -16,7 +16,7 @@ export class ComandoRegistrarReserva {
   @ApiProperty({ type: Date })
   public fechaFin: string;
 
-  @IsNumberString()
+  @IsNumber()
   @ApiProperty({ example: 132423 })
   public precioTotal: number;
 
@@ -24,7 +24,6 @@ export class ComandoRegistrarReserva {
   @ApiProperty({ example: 'Kr 58Hh - 87 Sur' })
   public direccionUsuarioRecibe: string;
 
-  @IsNumber()
   @ApiProperty({ example: '1' })
   public coche: Coche;
 
@@ -33,7 +32,7 @@ export class ComandoRegistrarReserva {
   public documento: string;
 
   @IsString()
-  @ApiProperty({ example: 'William' })
+  @ApiProperty({ example: 'Cris' })
   public nombre: string;
 
   @IsString()

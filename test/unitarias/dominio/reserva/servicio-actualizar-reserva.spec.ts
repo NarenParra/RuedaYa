@@ -1,13 +1,13 @@
 import * as moment from 'moment';
 import { SinonStubbedInstance } from 'sinon';
-import { Coche } from 'src/dominio/coche/modelo/coche';
-import { Reserva } from 'src/dominio/reserva/modelo/reserva';
 import { RepositorioReserva } from 'src/dominio/reserva/puerto/repositorio/repositorio-reserva';
-import { ServicioRegistrarReserva } from 'src/dominio/reserva/servicio/servicio-registrar-reserva';
+import { ServicioActualizarReserva } from 'src/dominio/reserva/servicio/servicio-actualizar-reserva';
 import { createStubObj } from 'test/util/create-object.stub';
+import { Reserva } from 'src/dominio/reserva/modelo/reserva';
+import { Coche } from 'src/dominio/coche/modelo/coche';
 
 describe('ServicioActualizarReserva', () => {
-  let servicioRegistrarReserva: ServicioRegistrarReserva;
+  let servicioActualizarReserva: ServicioActualizarReserva;
   let repositorioReservaStub: SinonStubbedInstance<RepositorioReserva>;
 
   beforeEach(() => {
@@ -17,13 +17,14 @@ describe('ServicioActualizarReserva', () => {
       'eliminar',
       'guardar',
     ]);
-    servicioRegistrarReserva = new ServicioRegistrarReserva(
+    servicioActualizarReserva = new ServicioActualizarReserva(
       repositorioReservaStub,
     );
   });
 
-  it('si existe um coche se puede registrar la reserva ', async () => {
+  it('si existe um coche se puede actualizar la reserva ', async () => {
     const nuevoCoche = new Coche(1, 'Mazda', '121', 'CDD-456', 45000);
+
     const reserva = new Reserva(
       new Date().toISOString(),
       moment()
@@ -33,14 +34,14 @@ describe('ServicioActualizarReserva', () => {
       'direccion recibe',
       nuevoCoche,
       'nombre usuario',
-      '1789456',
+      '4564646546',
       'cedula',
       'Lorem@lorem.com',
       'direccion',
       '12345678',
     );
-    await servicioRegistrarReserva.ejecutar(reserva);
+    await servicioActualizarReserva.ejecutar(reserva, 1);
 
-    expect(repositorioReservaStub.guardar.getCalls().length).toBe(1);
+    expect(repositorioReservaStub.actualizar.getCalls().length).toBe(1);
   });
 });

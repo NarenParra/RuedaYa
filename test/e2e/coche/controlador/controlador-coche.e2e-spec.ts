@@ -2,12 +2,12 @@ import * as request from 'supertest';
 import { HttpStatus, INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { createSandbox, SinonStubbedInstance } from 'sinon';
+import { AppLogger } from 'src/infraestructura/configuracion/ceiba-logger.service';
+import { createStubObj } from 'test/util/create-object.stub';
+import { FiltroExcepcionesDeNegocio } from 'src/infraestructura/excepciones/filtro-excepciones-negocio';
 import { ManejadorListarCoche } from 'src/aplicacion/coche/consulta/listar-coche.manejador';
 import { DaoCoche } from 'src/dominio/coche/puerto/dao/dao-coche';
 import { CocheControlador } from 'src/infraestructura/coche/controlador/coche-controlador';
-import { AppLogger } from 'src/infraestructura/configuracion/ceiba-logger.service';
-import { FiltroExcepcionesDeNegocio } from 'src/infraestructura/excepciones/filtro-excepciones-negocio';
-import { createStubObj } from 'test/util/create-object.stub';
 
 const sinonSandbox = createSandbox();
 
@@ -42,7 +42,14 @@ describe('Pruebas al controlador de Coche', () => {
   });
 
   it('debería listar los coches registrados', () => {
-    const coches: any[] = [{ marca: 'mazda', modelo: '121' }];
+    const coches: any[] = [
+      {
+        marca: 'Lorem ipsum',
+        modelo: 'Lorem ipsum',
+        matricula: 'Lorem ipsum',
+        precio: 111111,
+      },
+    ];
     daoCoche.listar.returns(Promise.resolve(coches));
 
     return request(app.getHttpServer())
