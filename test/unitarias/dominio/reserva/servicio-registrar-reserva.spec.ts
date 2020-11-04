@@ -6,7 +6,7 @@ import { RepositorioReserva } from 'src/dominio/reserva/puerto/repositorio/repos
 import { ServicioRegistrarReserva } from 'src/dominio/reserva/servicio/servicio-registrar-reserva';
 import { createStubObj } from 'test/util/create-object.stub';
 
-describe('ServicioActualizarReserva', () => {
+describe('ServicioRegistrarReserva', () => {
   let servicioRegistrarReserva: ServicioRegistrarReserva;
   let repositorioReservaStub: SinonStubbedInstance<RepositorioReserva>;
 
@@ -22,7 +22,7 @@ describe('ServicioActualizarReserva', () => {
     );
   });
 
-  it('si existe um coche se puede registrar la reserva ', async () => {
+  it('si existe un coche se puede registrar la reserva ', async () => {
     const nuevoCoche = new Coche(1, 'Mazda', '121', 'CDD-456', 45000);
     const reserva = new Reserva(
       new Date().toISOString(),
@@ -41,6 +41,6 @@ describe('ServicioActualizarReserva', () => {
     );
     await servicioRegistrarReserva.ejecutar(reserva);
 
-    expect(repositorioReservaStub.guardar.getCalls().length).toBe(1);
+    expect(repositorioReservaStub.saberPrecioCoche.getCalls().length).toBe(1);
   });
 });

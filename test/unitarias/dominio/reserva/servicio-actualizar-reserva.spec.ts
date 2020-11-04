@@ -22,9 +22,9 @@ describe('ServicioActualizarReserva', () => {
     );
   });
 
-  it('si existe um coche se puede actualizar la reserva ', async () => {
+  it('si existe um coche y un id de reserva, se puede actualizar la reserva ', async () => {
     const nuevoCoche = new Coche(1, 'Mazda', '121', 'CDD-456', 45000);
-
+    const id = 1;
     const reserva = new Reserva(
       new Date().toISOString(),
       moment()
@@ -40,7 +40,7 @@ describe('ServicioActualizarReserva', () => {
       'direccion',
       '12345678',
     );
-    await servicioActualizarReserva.ejecutar(reserva, 1);
+    await servicioActualizarReserva.ejecutar(reserva, id);
 
     expect(repositorioReservaStub.actualizar.getCalls().length).toBe(1);
   });

@@ -4,7 +4,7 @@ import { RepositorioReserva } from 'src/dominio/reserva/puerto/repositorio/repos
 import { ServicioEliminarReserva } from 'src/dominio/reserva/servicio/servicio-eliminar-reserva';
 import { createStubObj } from 'test/util/create-object.stub';
 
-describe('ServicioActualizarReserva', () => {
+describe('ServicioEliminarReserva', () => {
   let servicioEliminarReserva: ServicioEliminarReserva;
   let repositorioReservaStub: SinonStubbedInstance<RepositorioReserva>;
 
@@ -20,11 +20,10 @@ describe('ServicioActualizarReserva', () => {
     );
   });
 
-  it('si existe um coche se puede eliminar la reserva ', async () => {
+  it('si existe un el id se puede eliminar la reserva ', async () => {
     const nuevoCoche = new Coche(1, 'Mazda', '121', 'CDD-456', 45000);
 
     await servicioEliminarReserva.ejecutar(nuevoCoche.id);
-    console.log(repositorioReservaStub.eliminar.getCalls().length);
 
     expect(repositorioReservaStub.eliminar.getCalls().length).toBe(1);
   });
