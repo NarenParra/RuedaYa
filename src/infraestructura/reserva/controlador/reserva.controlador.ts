@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   UsePipes,
@@ -16,6 +17,7 @@ import { ManejadorListarReserva } from 'src/aplicacion/reserva/consulta/listar-r
 import { ReservaDto } from 'src/aplicacion/reserva/consulta/dto/reserva.dto';
 import { ManejadorActualizarReserva } from 'src/aplicacion/reserva/comado/actualizar-reserva.manejador';
 import { ManejadorEliminarReserva } from 'src/aplicacion/reserva/comado/eliminar-reserva.manejador';
+import { ManejadorCocheDisponibleReserva } from 'src/aplicacion/reserva/consulta/cocheDisponible-reserva.manejador';
 
 @Controller('reservas')
 export class ReservaCotrolador {
@@ -24,11 +26,19 @@ export class ReservaCotrolador {
     private readonly _manejadorActualizarReserva: ManejadorActualizarReserva,
     private readonly _manejadorEliminarReserva: ManejadorEliminarReserva,
     private readonly _manejadorListarReserva: ManejadorListarReserva,
+    private readonly _manejadorCocheDisponibleReserva: ManejadorCocheDisponibleReserva,
   ) {}
 
   @Get()
   async listar(): Promise<ReservaDto[]> {
     return this._manejadorListarReserva.ejecutar();
+  }
+
+  @Get(':id')
+  async cocheDisponible(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ReservaDto[]> {
+    return this._manejadorCocheDisponibleReserva.ejecutar(id);
   }
 
   @Post()

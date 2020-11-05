@@ -13,4 +13,10 @@ export class DaoReservaMysql implements DaoReserva {
   async listar(): Promise<ReservaDto[]> {
     return this.entityManager.query('SELECT *FROM RESERVA ');
   }
+
+  async cocheDisponible(idCoche: number): Promise<ReservaDto[]> {
+    return this.entityManager.query(
+      `select fechaInicio, fechaFin from RESERVA WHERE coche = ${idCoche} order by id desc limit 1`,
+    );
+  }
 }

@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ManejadorActualizarReserva } from 'src/aplicacion/reserva/comado/actualizar-reserva.manejador';
 import { ManejadorEliminarReserva } from 'src/aplicacion/reserva/comado/eliminar-reserva.manejador';
 import { ManejadorRegistrarReserva } from 'src/aplicacion/reserva/comado/registrar-reserva.manejador';
+import { ManejadorCocheDisponibleReserva } from 'src/aplicacion/reserva/consulta/cocheDisponible-reserva.manejador';
 import { ManejadorListarReserva } from 'src/aplicacion/reserva/consulta/listar-reserva.manejador';
 import { DaoReserva } from 'src/dominio/reserva/puerto/dao/dao-reserva';
 import { RepositorioReserva } from 'src/dominio/reserva/puerto/repositorio/repositorio-reserva';
@@ -41,6 +42,7 @@ import { servicioRegistrarReservaProveedor } from './servicio/servicio-registrar
     ManejadorActualizarReserva,
     ManejadorEliminarReserva,
     ManejadorListarReserva,
+    ManejadorCocheDisponibleReserva,
   ],
   exports: [
     ServicioRegistrarReserva,
@@ -50,6 +52,7 @@ import { servicioRegistrarReservaProveedor } from './servicio/servicio-registrar
     ManejadorActualizarReserva,
     ManejadorEliminarReserva,
     ManejadorListarReserva,
+    ManejadorCocheDisponibleReserva,
     RepositorioReserva,
     DaoReserva,
   ],
