@@ -35,7 +35,9 @@ export class ReservaCotrolador {
   @UsePipes(new ValidationPipe({ transform: true }))
   async crear(@Body() comandoRegistrarReserva: ComandoRegistrarReserva) {
     await this._manejadorRegistrarReserva.ejecutar(comandoRegistrarReserva);
-    return 'Reserva creada';
+    return {
+      message: 'Reserva creada',
+    };
   }
 
   @Put(':id')
@@ -48,12 +50,16 @@ export class ReservaCotrolador {
       comandoActualizarReserva,
       id,
     );
-    return 'Reserva actualizada';
+    return {
+      message: 'Reserva actualizada',
+    };
   }
 
   @Delete(':id')
   async eliminar(@Param('id') id: number) {
     await this._manejadorEliminarReserva.ejecutar(id);
-    return 'Reserva eliminada';
+    return {
+      message: 'Reserva eliminada',
+    };
   }
 }

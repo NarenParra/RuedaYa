@@ -275,4 +275,64 @@ describe('Pruebas al controlador de Reserva', () => {
     expect(response.body.message).toBe(mensaje);
     expect(response.body.statusCode).toBe(HttpStatus.BAD_REQUEST);
   });
+
+  it('debería  registar una reserva ', async () => {
+    const reserva: ComandoRegistrarReserva = {
+      fechaInicio: new Date().toISOString(),
+      fechaFin: moment()
+        .add(7, 'days')
+        .toISOString(),
+      precioTotal: 1234567,
+      direccionUsuarioRecibe: 'Lorem ipsum',
+      coche: nuevoCoche,
+      nombre: 'Lorem ipsum',
+      documento: '1234456',
+      tipoDocumento: 'cedula',
+      email: 'Lorem ipsum',
+      direccion: 'Lorem ipsum',
+      telefono: '123454544',
+    };
+    const mensaje = 'Reserva creada';
+
+    const response = await request(app.getHttpServer())
+      .post('/reservas')
+      .send(reserva)
+      .expect(HttpStatus.CREATED);
+    expect(response.body.message).toBe(mensaje);
+  });
+
+  it('debería  actualizar una reserva ', async () => {
+    const reserva: ComandoRegistrarReserva = {
+      fechaInicio: new Date().toISOString(),
+      fechaFin: moment()
+        .add(7, 'days')
+        .toISOString(),
+      precioTotal: 1234567,
+      direccionUsuarioRecibe: 'Lorem ipsum',
+      coche: nuevoCoche,
+      nombre: 'Lorem ipsum',
+      documento: '1234456',
+      tipoDocumento: 'cedula',
+      email: 'Lorem ipsum',
+      direccion: 'Lorem ipsum',
+      telefono: '123454544',
+    };
+    const mensaje = 'Reserva actualizada';
+
+    const response = await request(app.getHttpServer())
+      .put('/reservas/80')
+      .send(reserva)
+      .expect(HttpStatus.OK);
+    expect(response.body.message).toBe(mensaje);
+  });
+
+  it('debería  eliminar una reserva ', async () => {
+    const mensaje = 'Reserva eliminada';
+
+    const response = await request(app.getHttpServer())
+      .delete('/reservas/80')
+      .send()
+      .expect(HttpStatus.OK);
+    expect(response.body.message).toBe(mensaje);
+  });
 });
