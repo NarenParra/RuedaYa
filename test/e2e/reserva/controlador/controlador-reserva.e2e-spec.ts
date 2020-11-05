@@ -22,6 +22,7 @@ import { ComandoRegistrarReserva } from 'src/aplicacion/reserva/comado/registrar
 import { Coche } from 'src/dominio/coche/modelo/coche';
 
 import * as moment from 'moment';
+import { ManejadorCocheDisponibleReserva } from 'src/aplicacion/reserva/consulta/cocheDisponible-reserva.manejador';
 
 const sinonSandbox = createSandbox();
 
@@ -66,6 +67,7 @@ describe('Pruebas al controlador de Reserva', () => {
         ManejadorRegistrarReserva,
         ManejadorActualizarReserva,
         ManejadorEliminarReserva,
+        ManejadorCocheDisponibleReserva,
       ],
     }).compile();
 
