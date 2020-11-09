@@ -114,7 +114,9 @@ describe('Pruebas al controlador de Reserva', () => {
 
   it('debería fallar al registar una reserva documento muy corto', async () => {
     const reserva: ComandoRegistrarReserva = {
-      fechaInicio: new Date().toISOString(),
+      fechaInicio: moment()
+        .add(4, 'days')
+        .toISOString(),
       fechaFin: moment()
         .add(7, 'days')
         .toISOString(),
@@ -140,7 +142,9 @@ describe('Pruebas al controlador de Reserva', () => {
 
   it('debería fallar al registar una reserva telefono muy corto', async () => {
     const reserva: ComandoRegistrarReserva = {
-      fechaInicio: new Date().toISOString(),
+      fechaInicio: moment()
+        .add(5, 'days')
+        .toISOString(),
       fechaFin: moment()
         .add(7, 'days')
         .toISOString(),
@@ -280,7 +284,9 @@ describe('Pruebas al controlador de Reserva', () => {
 
   it('debería  registar una reserva ', async () => {
     const reserva: ComandoRegistrarReserva = {
-      fechaInicio: new Date().toISOString(),
+      fechaInicio: moment()
+        .add(4, 'days')
+        .toISOString(),
       fechaFin: moment()
         .add(7, 'days')
         .toISOString(),
@@ -305,7 +311,9 @@ describe('Pruebas al controlador de Reserva', () => {
 
   it('debería  actualizar una reserva ', async () => {
     const reserva: ComandoRegistrarReserva = {
-      fechaInicio: new Date().toISOString(),
+      fechaInicio: moment()
+        .add(4, 'days')
+        .toISOString(),
       fechaFin: moment()
         .add(7, 'days')
         .toISOString(),

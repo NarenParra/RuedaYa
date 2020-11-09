@@ -12,7 +12,9 @@ describe('Reserva', () => {
     return expect(
       async () =>
         new _Reserva(
-          new Date().toISOString(),
+          moment()
+            .add(4, 'days')
+            .toISOString(),
           moment()
             .add(7, 'days')
             .toISOString(),

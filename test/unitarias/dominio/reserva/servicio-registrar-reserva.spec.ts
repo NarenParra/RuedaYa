@@ -25,7 +25,9 @@ describe('ServicioRegistrarReserva', () => {
   it('si existe un coche se puede registrar la reserva ', async () => {
     const nuevoCoche = new Coche(1, 'Mazda', '121', 'CDD-456', 45000);
     const reserva = new Reserva(
-      new Date().toISOString(),
+      moment()
+        .add(4, 'days')
+        .toISOString(),
       moment()
         .add(7, 'days')
         .toISOString(),
