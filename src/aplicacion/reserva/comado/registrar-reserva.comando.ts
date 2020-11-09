@@ -2,7 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   IsDateString,
   IsNumber,
-  IsNumberString,
   IsString,
 } from 'class-validator';
 import { Coche } from 'src/dominio/coche/modelo/coche';
