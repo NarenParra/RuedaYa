@@ -4,7 +4,6 @@ pipeline{
 		label 'Slave_Induccion'
 		}
 	
-        
 		triggers {
         pollSCM('@hourly')
 		}
@@ -22,8 +21,6 @@ pipeline{
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Default' , submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub_NarenParra', url: 'https://github.com/NarenParra/RuedaYa.git']]])
 				}
 			}
-		
-		
 			stage('compilar '){
                 steps {
                     sh 'npm i'
@@ -35,8 +32,6 @@ pipeline{
                     sh 'npm run test:cov'					
 				}
             }
-
-			
 			 stage('Sonar Analysis'){
 			 	steps{
 			 		echo '------------>Analisis de código estático<------------'
@@ -45,9 +40,6 @@ pipeline{
                       }
 			 	}
 			 }
-		
-		
-
 		}
 		post {
 			failure {
@@ -56,5 +48,4 @@ pipeline{
 				subject: "ERROR CI: ${env.JOB_NAME}")
 			}
 		}	
-			
 }
