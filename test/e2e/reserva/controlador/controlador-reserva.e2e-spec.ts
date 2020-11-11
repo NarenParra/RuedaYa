@@ -23,6 +23,7 @@ import { Coche } from 'src/dominio/coche/modelo/coche';
 
 import * as moment from 'moment';
 import { ManejadorCocheDisponibleReserva } from 'src/aplicacion/reserva/consulta/cocheDisponible-reserva.manejador';
+import { number } from '@hapi/joi';
 
 const sinonSandbox = createSandbox();
 
@@ -110,6 +111,12 @@ describe('Pruebas al controlador de Reserva', () => {
       .get('/reservas')
       .expect(HttpStatus.OK)
       .expect(reservas);
+  });
+
+  it('debería no  listar coche un disponible', () => {
+    return request(app.getHttpServer())
+      .get('/reservas/1')
+      .expect(HttpStatus.INTERNAL_SERVER_ERROR);
   });
 
   it('debería fallar al registar una reserva documento muy corto', async () => {
