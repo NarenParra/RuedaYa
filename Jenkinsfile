@@ -1,9 +1,5 @@
 pipeline{
-	
-		agent {
-		label 'Slave_Induccion'
-		}
-	
+		
 		triggers {
         pollSCM('@hourly')
 		}
@@ -18,7 +14,7 @@ pipeline{
 			stage('Checkout') {
 				steps {
                 echo '------------>Checkout desde Git Microservicio<------------'
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Default' , submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub_NarenParra', url: 'https://github.com/NarenParra/RuedaYa.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/prueba']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Default' , submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub_NarenParra', url: 'https://github.com/NarenParra/RuedaYa.git']]])
 				}
 			}
 			stage('compilar '){
@@ -36,14 +32,14 @@ pipeline{
 			 	steps{
 			 		echo '------------>Analisis de código estático<------------'
 			 		  withSonarQubeEnv('Sonar') {
-                         sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=co.com.Ceiba:RuedaYa.naren.parra.master -Dsonar.projectName=co.com.Ceiba:RuedaYa.naren.parra.master -Dproject.settings=./sonar-project.properties"
+                         sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=co.com.Ceiba:RuedaYa.naren.parra.prueba -Dsonar.projectName=co.com.Ceiba:RuedaYa.naren.parra.prueba -Dproject.settings=./sonar-project.properties"
                       }
 			 	}
 			 }
 		}
 		post {
 			failure {
-				mail(to: 'naren.parra@ceiba.com.co',
+				mail(to: 'naren21p@gmail.com',
 				body:"Build failed in Jenkins: Project: ${env.JOB_NAME} Build /n Number: ${env.BUILD_NUMBER} URL de build: ${env.BUILD_NUMBER}/n/nPlease go to ${env.BUILD_URL} and verify the build",
 				subject: "ERROR CI: ${env.JOB_NAME}")
 			}
