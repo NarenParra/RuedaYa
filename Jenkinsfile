@@ -1,7 +1,5 @@
 pipeline{
-		agent {
-		label 'principal'
-		}
+		agent any
 		
 		triggers {
         pollSCM('@hourly')
