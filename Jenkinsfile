@@ -33,8 +33,11 @@ pipeline{
 			 	steps{
 			 		echo '------------>Analisis de código estático<------------'
 			 		  withSonarQubeEnv('Sonar') {
-                         sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=http://localhost:9000:RuedaYa.naren.parra.prueba -Dsonar.projectName=http://localhost:9000:RuedaYa.naren.parra.prueba -Dproject.settings=./sonar-project.properties"
-                      }
+                        // sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=co.com.Ceiba:RuedaYa.naren.parra.prueba -Dsonar.projectName=co.com.Ceiba:RuedaYa.naren.parra.prueba -Dproject.settings=./sonar-project.properties"
+                         sh "${sonar-scanner.bat}/bin/sonar-scanner -Dsonar.projectKey=prueba -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d3ca178fe2966514f4f6ab53eb28b1d525e0ec72 -Dproject.settings=./sonar-project.properties"
+                        // sh "sonar-scanner.bat -Dsonar.projectKey=prueba -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d3ca178fe2966514f4f6ab53eb28b1d525e0ec72 -Dproject.settings=./sonar-project.properties"
+                      
+					  }
 			 	}
 			 }
 		}
