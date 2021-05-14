@@ -20,20 +20,20 @@ pipeline{
 			}
 			stage('compilar '){
                 steps {
-                    sh 'npm i'
-                    sh 'npm run build'					
+                    pwsh 'npm i'
+                    pwsh 'npm run build'					
 				}
             }
             stage('test '){
                 steps {
-                    sh 'npm run test:cov'					
+                    pwsh 'npm run test:cov'					
 				}
             }
 			 stage('Sonar Analysis'){
 			 	steps{
 			 		echo '------------>Analisis de código estático<------------'
 			 		  withSonarQubeEnv('Sonar') {
-                         sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=co.com.Ceiba:RuedaYa.naren.parra.prueba -Dsonar.projectName=co.com.Ceiba:RuedaYa.naren.parra.prueba -Dproject.settings=./sonar-project.properties"
+                         pwsh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=co.com.Ceiba:RuedaYa.naren.parra.prueba -Dsonar.projectName=co.com.Ceiba:RuedaYa.naren.parra.prueba -Dproject.settings=./sonar-project.properties"
                       }
 			 	}
 			 }
