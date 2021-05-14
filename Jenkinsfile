@@ -29,14 +29,7 @@ pipeline{
                     sh 'npm run test:cov'					
 				}
             }
-			 stage('Sonar Analysis'){
-			 	steps{
-			 		echo '------------>Analisis de código estático<------------'
-			 		  withSonarQubeEnv('Sonar') {
-                         sh "${tool name: 'SonarScanner'
-                      }
-			 	}
-			 }
+			
 		}
 		post {
 			failure {
