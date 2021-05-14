@@ -29,7 +29,14 @@ pipeline{
                     sh 'npm run test:cov'					
 				}
             }
-			
+			 stage('Sonar Analysis'){
+			 	steps{
+			 		echo '------------>Analisis de código estático<------------'
+			 		  withSonarQubeEnv('Sonar') {
+                         sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=http://localhost:9000:RuedaYa.naren.parra.prueba -Dsonar.projectName=http://localhost:9000:RuedaYa.naren.parra.prueba -Dproject.settings=./sonar-project.properties"
+                      }
+			 	}
+			 }
 		}
 		post {
 			failure {
