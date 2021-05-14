@@ -4,6 +4,11 @@
   "description": "",
   "author": "",
   "license": "MIT",
+  "jestSonar": {
+    "reportPath": "reports",
+    "reportFile": "report.xml",
+    "indent": 4
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
