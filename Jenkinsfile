@@ -15,7 +15,7 @@ pipeline{
 			stage('Checkout') {
 				steps {
                 echo '------------>Checkout desde Git Microservicio<------------'
-                checkout([$class: 'GitSCM', branches: [[name: '*/prueba']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Default' , submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub_NarenParra', url: 'https://github.com/NarenParra/RuedaYa.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/prueba']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Default' , submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GITHUB_NarenParra', url: 'https://github.com/NarenParra/RuedaYa.git']]])
 				}
 			}
 			stage('compilar '){
